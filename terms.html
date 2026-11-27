@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terms of Use — LeelaCloud</title>
+  <meta name="description" content="Terms of Use for LeelaCloud software and documentation.">
+  <meta name="theme-color" content="#07221B">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav-shell">
+    <nav class="nav-island" aria-label="Primary navigation">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt="" width="32" height="32">
+        <span>LeelaCloud</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Overview</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html" aria-current="page">Terms</a>
+        <a href="index.html#support">Support</a>
+      </div>
+      <span class="nav-status"><span class="status-dot" aria-hidden="true"></span>Private Development</span>
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="menu-bars" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-drawer" aria-label="Mobile navigation" data-open="false">
+    <a href="index.html">Overview</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html" aria-current="page">Terms of Use</a>
+    <a href="index.html#support">Support</a>
+  </nav>
+
+  <main id="main" class="wrap doc-layout">
+    <div class="doc-hero">
+      <span class="eyebrow">Terms of Use</span>
+      <h1>LeelaCloud Terms of Use</h1>
+      <p class="doc-meta">Effective Date: November 27, 2026 · Applies to the LeelaCloud software and website</p>
+    </div>
+
+    <div class="bezel">
+      <div class="bezel-core prose">
+        <section>
+          <h2>1. Project Status &amp; Acceptance</h2>
+          <p>
+            LeelaCloud is an independent software project currently in private development. By accessing this website or using any authorized build of LeelaCloud, you agree to these Terms of Use and our <a href="privacy.html">Privacy Policy</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Independent Software &amp; Third-Party Services</h2>
+          <p>
+            LeelaCloud connects your local UCI chess GUI (such as ChessBase) to cloud compute and storage services that you independently maintain with Google (Google Colab and Google Drive) and compiles or runs open-source Leela Chess Zero (Lc0) engine releases and neural networks.
+          </p>
+          <ul>
+            <li>LeelaCloud is <strong>not</strong> affiliated with, endorsed by, or sponsored by Google LLC, ChessBase GmbH, or the Leela Chess Zero project.</li>
+            <li>You are solely responsible for complying with the terms of service, acceptable use policies, and billing terms of Google Colab, Google Drive, ChessBase, and any other third-party software or service you use alongside LeelaCloud.</li>
+            <li>Open-source components (including Leela Chess Zero under GNU GPL v3 and Rust/JavaScript libraries) remain governed by their respective licenses.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>3. Compute Usage, Billing &amp; Safeguards</h2>
+          <p>
+            Google Colab compute units (CU), GPU availability, regional capacity, and billing granularity are controlled entirely by Google. While LeelaCloud provides automatic runtime release, idle shutdown, maximum session safeguards, balance reserve floors, and local attributed CU estimates to help protect against unintended compute consumption:
+          </p>
+          <ul>
+            <li>Local safeguards and session CU budgets are best-effort local estimates and do not represent a hard provider billing cap.</li>
+            <li>Network outages, local power loss, or provider API delays may affect remote session termination; you remain responsible for monitoring your own Google Colab active sessions and compute unit balance.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Acceptable Use</h2>
+          <p>
+            You agree not to use LeelaCloud to violate Google Colab or Google Drive policies, circumvent provider tier limits or account restrictions, attempt unauthorized access to cloud infrastructure, or engage in unfair play in rated or tournament chess games where engine assistance is prohibited.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Disclaimer of Warranties &amp; Limitation of Liability</h2>
+          <p>
+            LEELACLOUD AND THIS WEBSITE ARE PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AVAILABILITY, OR NON-INFRINGEMENT. TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE DEVELOPERS OF LEELACLOUD SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES, INCLUDING CLOUD COMPUTE CHARGES, LOST DATA, OR SERVICE INTERRUPTIONS ARISING FROM USE OF THE SOFTWARE.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Updates &amp; Contact</h2>
+          <p>
+            We may revise these Terms of Use as development progresses. Questions regarding these terms may be directed through <a href="https://github.com/leelacloud" rel="noopener noreferrer">github.com/leelacloud</a><!-- SUPPORT_CONTACT_SLOT -->.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html">
+            <img src="assets/logo.svg" alt="" width="28" height="28">
+            <span>LeelaCloud</span>
+          </a>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Overview</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html" aria-current="page">Terms of Use</a>
+          <a href="index.html#support">Support</a>
+        </div>
+      </div>
+      <p class="disclaimer">
+        LeelaCloud is an independent project and is not affiliated with Google LLC, ChessBase GmbH, or Leela Chess Zero.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var btn = document.querySelector(".menu-toggle");
+      var drawer = document.getElementById("mobile-menu");
+      if (btn && drawer) {
+        btn.addEventListener("click", function () {
+          var open = btn.getAttribute("aria-expanded") === "true";
+          btn.setAttribute("aria-expanded", String(!open));
+          drawer.setAttribute("data-open", String(!open));
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

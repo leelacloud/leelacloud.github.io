@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — LeelaCloud</title>
+  <meta name="description" content="How LeelaCloud accesses, stores, transfers, and deletes Google account, Colab, and narrow Google Drive (drive.file) data on your Windows computer.">
+  <meta name="theme-color" content="#07221B">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav-shell">
+    <nav class="nav-island" aria-label="Primary navigation">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt="" width="32" height="32">
+        <span>LeelaCloud</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Overview</a>
+        <a href="privacy.html" aria-current="page">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="index.html#support">Support</a>
+      </div>
+      <span class="nav-status"><span class="status-dot" aria-hidden="true"></span>Private Development</span>
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="menu-bars" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </nav>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-drawer" aria-label="Mobile navigation" data-open="false">
+    <a href="index.html">Overview</a>
+    <a href="privacy.html" aria-current="page">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="index.html#support">Support</a>
+  </nav>
+
+  <main id="main" class="wrap doc-layout">
+    <div class="doc-hero">
+      <span class="eyebrow">Privacy Policy</span>
+      <h1>LeelaCloud Privacy Policy</h1>
+      <p class="doc-meta">Effective Date: November 27, 2026 · Applies to the LeelaCloud Windows application and <span class="code-chip">leelacloud.github.io</span></p>
+    </div>
+
+    <div class="bezel">
+      <div class="bezel-core prose">
+        <section>
+          <h2>1. Overview &amp; Local-First Architecture</h2>
+          <p>
+            LeelaCloud is a standalone Windows desktop application and Universal Chess Interface (UCI) engine that lets you run
+            Leela Chess Zero (Lc0) chess analysis on your own Google Colab GPU runtimes, optionally caching Lc0 binaries and neural network weights in your own Google Drive.
+          </p>
+          <p>
+            <strong>No developer backend servers:</strong> LeelaCloud runs directly on your Windows computer and communicates directly between your computer, Google's official APIs, and your own ephemeral Google Colab runtimes. LeelaCloud does not operate developer-hosted servers that receive, store, inspect, or relay your Google credentials, Google Drive files, usage history, or chess positions.
+          </p>
+          <p>
+            <strong>Website privacy:</strong> This website (<span class="code-chip">leelacloud.github.io</span>) is a static site with zero cookies, zero advertising pixels, and zero third-party analytics trackers. GitHub Pages infrastructure may process standard HTTPS access logs under GitHub's privacy statement.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Google Account Information Accessed</h2>
+          <p>
+            When you connect a Google account in LeelaCloud, the application uses OAuth 2.0 with PKCE in your system web browser and accesses only the following Google account data:
+          </p>
+          <div class="table-scroll">
+            <table class="scope-table">
+              <thead>
+                <tr>
+                  <th>Integration</th>
+                  <th>Google OAuth Scopes</th>
+                  <th>Purpose in LeelaCloud</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Google Drive Cache</strong><br>(LeelaCloud OAuth Client)</td>
+                  <td>
+                    <span class="code-chip">openid</span><br>
+                    <span class="code-chip">https://www.googleapis.com/auth/userinfo.email</span><br>
+                    <span class="code-chip">https://www.googleapis.com/auth/drive.file</span>
+                  </td>
+                  <td>
+                    Identifies the matching Google account (<span class="code-chip">sub</span> and email address) to prevent cross-account token mix-ups, and stores/restores only LeelaCloud-created engine binaries and neural network weights in your Google Drive.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Google Colab Runtime</strong><br>(Separate Colab Client)</td>
+                  <td>
+                    Google Colab CLI installed-app scopes (<span class="code-chip">openid</span>, profile/email, <span class="code-chip">colaboratory</span>, <span class="code-chip">cloud-platform</span>)
+                  </td>
+                  <td>
+                    Reads your Colab compute balance, hourly rate, active runtime list, and GPU eligibility, and allocates, connects to (over encrypted WebSocket SSH-2), and terminates only Colab runtimes owned by LeelaCloud.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            LeelaCloud keeps Google Colab authorization and Google Drive authorization strictly separated into distinct OS credential namespaces and OAuth clients.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Narrow Google Drive (<span class="code-chip">drive.file</span>) Permissions &amp; Cloud Artifact Storage</h2>
+          <p>
+            LeelaCloud uses only the narrow, non-sensitive <span class="code-chip">https://www.googleapis.com/auth/drive.file</span> scope for Google Drive storage. Under this scope:
+          </p>
+          <ul>
+            <li>LeelaCloud can create, read, verify, and delete <strong>only</strong> files and folders created by LeelaCloud itself (specifically <span class="code-chip">LeelaCloud/engines</span> and <span class="code-chip">LeelaCloud/networks</span> in your personal Google Drive).</li>
+            <li>LeelaCloud <strong>cannot</strong> list, browse, read, modify, or delete any other files, documents, spreadsheets, or photos in your Google Drive.</li>
+            <li>Cached artifacts consist strictly of compiled Lc0 engine binaries and official Lc0 neural network weight files (<span class="code-chip">.pb</span> or <span class="code-chip">.pb.gz</span>) accompanied by integrity metadata (<span class="code-chip">SHA-256</span> and <span class="code-chip">BLAKE2b-256</span> chunk manifests) pinned locally on your PC.</li>
+            <li>Remote Drive metadata is never blindly trusted for execution; artifacts are verified cryptographically against your local pins before Lc0 loads them on a Colab GPU.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Local Credential Storage &amp; Local Application Data</h2>
+          <p>
+            All credentials and operational records stay locally on your Windows device:
+          </p>
+          <ul>
+            <li><strong>OAuth Tokens:</strong> Refresh tokens and short-lived cached access tokens are stored exclusively in the <strong>Windows Credential Manager</strong> (via native Win32 <span class="code-chip">CredWriteW</span> / <span class="code-chip">CredReadW</span> APIs) under separate per-account namespaces (<span class="code-chip">LeelaCloud/Google/&lt;subject&gt;</span> and <span class="code-chip">LeelaCloud/Drive/&lt;subject&gt;</span>). OAuth tokens are never written to plain project files, UCI output, or portable backups.</li>
+            <li><strong>Local Configuration &amp; Pins:</strong> Stored in your Windows user profile at <span class="code-chip">%LOCALAPPDATA%\LeelaCloud\</span>, including <span class="code-chip">settings.json</span>, per-account profile metadata (<span class="code-chip">&lt;subject&gt;.json</span> containing Google subject ID, email, and last balance snapshot), cryptographic Drive cache pins (<span class="code-chip">pins-&lt;subject&gt;.json</span>), captured Lc0 option schemas, and local benchmark profiles (<span class="code-chip">benchmarks.json</span>).</li>
+            <li><strong>Usage History &amp; Compute Accounting:</strong> Stored locally in <span class="code-chip">%LOCALAPPDATA%\LeelaCloud\usage.sqlite3</span> (SQLite WAL). This database records local session timestamps, measured durations, provider-reported balance/rate snapshots, attributed compute estimates, GPU model, engine/network identifiers, and release evidence. It does not store chess games or PGNs.</li>
+            <li><strong>Secret-Free Portable Backups:</strong> If you explicitly export a portable backup JSON, it includes only preferences, cryptographic cache pins, and local benchmark profiles — never OAuth tokens or client secrets.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>5. Data Transfers</h2>
+          <p>
+            During normal operation, LeelaCloud makes direct HTTPS/TLS and encrypted WebSocket connections solely to:
+          </p>
+          <ul>
+            <li><strong>Google OAuth &amp; Identity endpoints</strong> (<span class="code-chip">accounts.google.com</span>, <span class="code-chip">oauth2.googleapis.com</span>, <span class="code-chip">openidconnect.googleapis.com</span>) for PKCE sign-in, token refresh, identity verification, and RFC 7009 token revocation.</li>
+            <li><strong>Google Colab APIs &amp; your ephemeral Colab VM</strong> (<span class="code-chip">colab.research.google.com</span>, <span class="code-chip">*.prod.r.colab.dev</span>) to check balance/eligibility, allocate/terminate your GPU runtime, and relay UCI chess positions and evaluations over an encrypted SSH-2 session. Chess positions sent by your chess GUI are processed transiently in memory by Lc0 on your ephemeral Colab VM and are not collected by LeelaCloud.</li>
+            <li><strong>Google Drive API v3</strong> (<span class="code-chip">www.googleapis.com</span>) to store, scan, restore, or delete LeelaCloud-owned engine and network cache files. During warm restore, a short-lived Drive access token is sent over your encrypted SSH-2 channel to your own ephemeral Colab VM so the VM can download your cached Lc0 weights directly cloud-to-cloud.</li>
+            <li><strong>Public Lc0 catalog sources</strong> (<span class="code-chip">api.github.com</span> for official Lc0 releases and <span class="code-chip">lczero.org</span> / <span class="code-chip">storage.lczero.org</span> for public neural network metadata and downloads). No Google tokens or user identifiers are sent to these public endpoints.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>6. Google API Services User Data Policy — Limited Use Disclosure</h2>
+          <div class="callout">
+            <p style="margin: 0; color: inherit;">
+              <strong>Limited Use Statement:</strong> LeelaCloud's use and transfer to any other app of information received from Google APIs will adhere to the
+              <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener noreferrer">Google API Services User Data Policy</a>,
+              including the Limited Use requirements.
+            </p>
+          </div>
+          <p>Specifically, with respect to all data accessed through Google APIs:</p>
+          <ul>
+            <li>We do <strong>not</strong> use Google user data for serving advertising, including retargeting, personalized, or interest-based advertising.</li>
+            <li>We do <strong>not</strong> sell, rent, or transfer Google user data to third parties, except as strictly necessary to provide the user-initiated features described in this policy (direct transfers between your device, Google APIs, and your own Colab VM) or to comply with applicable law.</li>
+            <li>We do <strong>not</strong> allow humans to read your Google user data or Drive files (LeelaCloud has no developer servers receiving your data).</li>
+            <li>We do <strong>not</strong> use Google user data or Google Drive files to develop, improve, or train generalized or non-personalized artificial intelligence (AI) or machine learning (ML) models.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>7. Data Retention, Account Disconnection &amp; Revocation</h2>
+          <p>
+            Because all credentials and history are stored under your direct control, you can disconnect or delete all data at any time:
+          </p>
+          <ul>
+            <li><strong>Disconnect Google Drive:</strong> In LeelaCloud Desktop → <strong>Accounts</strong> → <strong>Disconnect Drive</strong>, LeelaCloud deletes the stored Drive refresh and cached access tokens from Windows Credential Manager and sends a best-effort RFC 7009 token revocation request to <span class="code-chip">oauth2.googleapis.com/revoke</span>.</li>
+            <li><strong>Remove Google Profile:</strong> Removing a profile in <strong>Accounts</strong> revokes and deletes both Colab and Drive tokens from Windows Credential Manager and deletes the local profile metadata file (local SQLite session history is preserved unless you delete it).</li>
+            <li><strong>Revoke via Google Account:</strong> You may revoke LeelaCloud's access at any time from your Google Account permissions page at <a href="https://myaccount.google.com/permissions" rel="noopener noreferrer">myaccount.google.com/permissions</a>.</li>
+            <li><strong>Delete Cached Cloud Artifacts:</strong> Delete individual cached engines or networks inside LeelaCloud Desktop (<strong>Engines</strong> / <strong>Networks</strong> → <strong>Remove cache</strong>) or delete the <span class="code-chip">LeelaCloud</span> folder directly in Google Drive.</li>
+            <li><strong>Delete All Local Data:</strong> Delete the local application data folder <span class="code-chip">%LOCALAPPDATA%\LeelaCloud\</span> after removing profiles in the app.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>8. Security Boundaries &amp; Limitations</h2>
+          <p>
+            LeelaCloud implements strong transport, integrity, and credential-isolation safeguards (Windows Credential Manager, PKCE, RFC 8252 loopback with constant-time CSRF <span class="code-chip">state</span>, strict-kex SSH-2 with host-key continuity pinning, and cryptographic artifact verification). However, no software system can guarantee absolute security, and your security also depends on keeping your Windows operating system, Google account, and local device secure.
+          </p>
+        </section>
+
+        <section>
+          <h2>9. Changes &amp; Contact</h2>
+          <p>
+            We may update this Privacy Policy as LeelaCloud evolves. Material updates will be reflected by updating the Effective Date at the top of this page.
+            For privacy questions or requests, please reach us via <a href="https://github.com/leelacloud" rel="noopener noreferrer">github.com/leelacloud</a><!-- SUPPORT_CONTACT_SLOT -->.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html">
+            <img src="assets/logo.svg" alt="" width="28" height="28">
+            <span>LeelaCloud</span>
+          </a>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Overview</a>
+          <a href="privacy.html" aria-current="page">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+          <a href="index.html#support">Support</a>
+        </div>
+      </div>
+      <p class="disclaimer">
+        LeelaCloud is an independent project and is not affiliated with Google LLC, ChessBase GmbH, or Leela Chess Zero.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var btn = document.querySelector(".menu-toggle");
+      var drawer = document.getElementById("mobile-menu");
+      if (btn && drawer) {
+        btn.addEventListener("click", function () {
+          var open = btn.getAttribute("aria-expanded") === "true";
+          btn.setAttribute("aria-expanded", String(!open));
+          drawer.setAttribute("data-open", String(!open));
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
